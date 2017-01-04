@@ -22,7 +22,7 @@ body={390pt,530pt},marginparsep=10pt,marginpar=50pt]{geometry}		%设置页面
 
 \hypersetup{bookmarksnumbered=true,bookmarksdepth=2}				%设置bookmark
 
-\CTEXsetup[number={\thechapter}]{chapter}							%章节编号
+%\CTEXsetup[number={\thechapter}]{chapter}							%章节编号
 \CTEXsetup[format+={\raggedleft}]{chapter}							%Command used for right justified within other environments.
 \CTEXsetup[beforeskip={10pt}]{chapter}								%章节标题前的空距
 \CTEXsetup[afterskip={30pt}]{chapter}								%章节标题后的空距

@@ -2,7 +2,7 @@
 \documentclass[10pt,adobefonts,fancyhdr,hyperref,UTF8]{ctexbook}
 
 \makeatletter
-\input{esl_format.cls}
+\input{my_format.cls}
 \makeatother
 
 \begin{document}
@@ -23,15 +23,15 @@
   \frontmatter % 开始前言目录，页码用罗马数字
 
   \include{title}
-  
+
 %
   \tableofcontents
 
   \mainmatter
 
   \graphicspath{{diagrams/}}
-  
-  \include{chapter8}
+
+  \include{Chapter8/model-inference-and-averaging}
 %
 %  \include{chapSignal}
 %  \include{chapMath}
