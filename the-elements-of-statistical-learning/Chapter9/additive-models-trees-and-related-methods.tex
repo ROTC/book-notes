@@ -1,0 +1,31 @@
+\chapter{Additive Models, Trees, and Related Methods}
+    \section{Generalized Additive Models}
+    \section{Tree-Based Methods}
+        \subsection{Background}
+        \subsection{Regression Trees}
+        \subsection{Classification Trees}
+            不同的节点非纯度度量${Q_m}(T)$，包括交叉熵或者deviance(散离)。
+
+            交叉熵和基尼指数对结点概率的改变更加敏感，相对于错误率来说。
+        \subsection{Other issues}
+            {\color{blue} \bf{Categorical Predictors}}
+
+            {\color{blue} \bf{The Loss Matrix}}
+
+            观测的误分类后果对于某些类要比其他类严重。为了把损失引入到建模过程中，可以把Gini指数修改成$\sum\nolimits_{k \ne k'} {{L_{kk'}}} {\hat p_{mk}}{\hat p_{mk'}}$ 。该方法对多分类比较有效，对于二分类，系数不起作用，更好的办法是给$k$类中的样本加权$L_{kk'}$。对于多分类来说，仅当$L_{kk'}$与$k'$无关时才能使用。观测加权的作用是改变类的先验概率。
+            
+            {\color{blue} \bf{Missing Predictor Values}}
+            
+            {\color{blue} \bf{Why Binary Splits}}
+            
+            多路分裂会很快地把数据分裂成碎片，导致下一层的数据不足。而且多路分裂也可以由一系列二叉分裂组成。
+            
+            {\color{blue} \bf{Other Tree-Building Procedures}}
+            
+            CART(classification and regression tree)
+            
+            {\color{blue} \bf{Linear Combination Splits}}
+            
+            线性组合分裂可能增强树的预测能力，但可能破坏其可解释性。在计算方面，分裂点搜索的离散性阻碍了权值光滑优化的使用。
+            
+            {\color{blue} \bf{Instability of Trees}}
