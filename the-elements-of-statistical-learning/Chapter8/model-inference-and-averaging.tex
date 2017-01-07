@@ -56,13 +56,13 @@
         MCMC(Markov chain Monte Carlo)马尔科夫链蒙特卡洛方法。
     \section{Bagging(装袋)}
         Bagging(Bootstrap aggregation)对自助法样本集上的预测求平均，从而降低方差。真实装袋估计的定义是${{\mathop{\rm E}\nolimits} _{\hat p}}{\hat f^*}(x)$，其中$\hat p$表示经验分布，即从实际总体中而不是数据中抽取样本。
-        
+
         仅当原来的估计是非线性的，或者是数据的自适应函数时，装袋估计与${\hat f}(x)$不同。
-    
+
         对于数模型来说，类概率估计为在末端节点中的类比例，Bagging平均类概率通常可降低方差。
         \subsection{Example: Trees with Simulated Data}
             由于预测子的相关性，这些树具有较高的方差。Bagging成功地光滑了这种方差，从而降低了检验误差。
-            
+
             Bagging可以降低均方误差，因为平均可以降低不稳定过程（如树）的方差，而保持偏倚不变。参考\href{https://www.zhihu.com/question/26760839}{\color{blue} 知乎：为什么说bagging是减少variance，而boosting是减少bias}，由于子集样本集的相似性以及使用的是同种模型，因此各模型有近似相等的bias和variance。由于${\mathop{\rm E}\nolimits} [{{\sum {{x_i}} } \mathord{\left/
  {\vphantom {{\sum {{x_i}} } n}} \right.
  \kern-\nulldelimiterspace} n}] = {\mathop{\rm E}\nolimits} [{x_i}]$，以bagging后的bias和单个子模型的接近，一般来说不能显著降低bias。另一方面，若各子模型独立，${\mathop{\rm var}} ({{\sum {{x_i}} } \mathord{\left/
@@ -70,14 +70,22 @@
  \kern-\nulldelimiterspace} n}) = {{{\mathop{\rm var}} ({x_i})} \mathord{\left/
  {\vphantom {{{\mathop{\rm var}} ({x_i})} n}} \right.
  \kern-\nulldelimiterspace} n}$，此时可以显著降低variance。
-            
+
             训练样本是从$P$分布中抽取的不相关的样本(不重复)，而自助样本也是从$P$中采样得到的。
-            
+
             %上面的讨论对于0-1损失不成立，因为偏倚和方差不具有可加性。
-            
+
             当bag一个模型时，模型中任何简单结构都将失去。如bagged树已不再是树，对于模型的解释，这显然是一个缺点。
-            
+
             由bag计算的期望类概率不能在任何一个single replication上实现，在这种其意义上，bag一定程度上增大了各基分类器的模型空间。对于该例子(single split分类器bag拟合双向拟合$x_1+x_2=1$)或者其它例子，模型需要放大时，bag没有帮助。
+    \section{Model Averaging and Stacking}
+        从非参数的贝叶斯角度分析，估计子的自助法值可看作对应参数的近似后验值，从这个角度看，bagged值是一个后验贝叶斯均值(${\mathop{\rm E}\nolimits} (Y|X = x)$)，因而可以减小均方误差。训练样本的估计对应于后验众数(结构经验损失？)。
+
+        有时直接取均值的方法不能成功，原因是没考虑模型的复杂性，即没将模型置于相同的的立足点。
+
+        Stacked generalization或者stacking，则可以解决该问题。通过使用交叉验证预测$\hat f_m^{ - i}(x)$，可以避免将不合理的高权值赋予具有高复杂度的模型。通过限定权值非负并且和为1可以得到更好的结果。stacking通常将导致更好的预测，但可解释性不如从$M$个模型中选取一个好。
+    \section{Stochastic Search: Bumping}
+
 
 
 

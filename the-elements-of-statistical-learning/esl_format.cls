@@ -13,6 +13,7 @@ body={390pt,530pt},marginparsep=10pt,marginpar=50pt]{geometry}		%设置页面
 \usepackage{pifont}													%引入圆圈标注
 \usepackage{underscore}
 \usepackage{xltxtra}
+\usepackage{amsmath}
 
 %设置脚注的符号为圆圈标号
 %\DefineFNsymbols*{chinese}{{\ding{172}}{\ding{173}}{\ding{174}}{\ding{175}}%
