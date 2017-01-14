@@ -13,19 +13,36 @@
             {\color{blue} \bf{The Loss Matrix}}
 
             观测的误分类后果对于某些类要比其他类严重。为了把损失引入到建模过程中，可以把Gini指数修改成$\sum\nolimits_{k \ne k'} {{L_{kk'}}} {\hat p_{mk}}{\hat p_{mk'}}$ 。该方法对多分类比较有效，对于二分类，系数不起作用，更好的办法是给$k$类中的样本加权$L_{kk'}$。对于多分类来说，仅当$L_{kk'}$与$k'$无关时才能使用。观测加权的作用是改变类的先验概率。
-            
+
             {\color{blue} \bf{Missing Predictor Values}}
-            
+
             {\color{blue} \bf{Why Binary Splits}}
-            
+
             多路分裂会很快地把数据分裂成碎片，导致下一层的数据不足。而且多路分裂也可以由一系列二叉分裂组成。
-            
+
             {\color{blue} \bf{Other Tree-Building Procedures}}
-            
+
             CART(classification and regression tree)
-            
+
             {\color{blue} \bf{Linear Combination Splits}}
-            
+
             线性组合分裂可能增强树的预测能力，但可能破坏其可解释性。在计算方面，分裂点搜索的离散性阻碍了权值光滑优化的使用。
-            
+
             {\color{blue} \bf{Instability of Trees}}
+
+            树的方差较大，数据的一个较小变化将导致一系列完全不同的分裂，使得解释有些不稳定。这种不稳定性的主要原因是过程的分层本性，顶层分裂中的错误被传播到下面的所有分裂。
+
+            {\color{blue} \bf{Lack of Smoothness}}
+
+            可以看到预测面缺乏光滑性(分层)。在0/1损失的分类中，因为类概率估计中的偏倚的影响有限，因而不会产生太大伤害。然而，可能降低回归处理的性能。
+
+            {\color{blue} \bf{Difficulty in Capturing Additive Structure}}
+        \subsection{Spam Example(Continued)}
+            交叉验证误差率由一系列α值来标引，而不是树的大小，因为对于同一个α，不同折生成的树可能大小不一样。（图9.4的交叉验证结果只被α值索引，测试结果既可被α，又可被剪枝后的树的大小索引）
+            
+            医学分类问题中，术语敏感性(sensitivity)(1预测为1)和特效性(specificity)(0预测为0)用来刻画规则。
+            
+            更好的方法不是仅在节点中修改贝叶斯规则（更改损失权重），而是在树增长过程中考虑不相等损失。
+            
+            ROC曲线下面的面积也被称为c-statistic，当考虑一个额外的预测子加在标准模型上的影响时，其可能不是一个合理的度量。新的预测子可能在模型散离度的改变上影响很大，而在c-statistic上只会小量的增大。另一方面，c-statistic在分析额外预测子对独立样本的分类的改变上有用。
+

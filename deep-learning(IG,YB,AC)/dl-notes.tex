@@ -1,0 +1,41 @@
+% !Mode:: "TeX:UTF-8"
+\documentclass[10pt,adobefonts,fancyhdr,hyperref,UTF8]{ctexbook}
+
+\makeatletter
+\input{dl-format.cls}
+\makeatother
+
+\begin{document}
+  \sloppy                   %避免文字过长超过边界
+  \newcommand{\BookTitle}{Deep Learning(Ian Goodfellow, Yoshua Bengio, Aaron Courville)学习笔记}
+  \pagestyle{fancy}         %自己定义页面样式
+  \fancyhf{}                %删除当前的的页眉和页脚配置，从而可以自己定义
+  \fancyhead[RE]{\normalfont\small\rmfamily\nouppercase{\leftmark}}
+  \fancyhead[LO]{\normalfont\small\rmfamily\nouppercase{\rightmark}}
+  \fancyhead[LE,RO]{\thepage}
+  \fancyfoot[LE,LO]{\small\normalfont\youyuan\BookTitle  by 李奥林}
+  \fancyfoot[RE,RO]{\textsf{\small \color{blue} http://www.github.com/rotc}}
+
+  \makeatletter
+  \@openrightfalse
+  \makeatother
+
+  \frontmatter % 开始前言目录，页码用罗马数字
+
+  \include{title}
+
+%
+  \tableofcontents
+
+  \mainmatter
+
+  \graphicspath{{diagrams/}}
+
+  \include{Chapter4/numerical-computation}
+%
+%  \include{chapSignal}
+%  \include{chapMath}
+%  \include{chapDraw}
+%  \include{chapFile}
+%  \include{chapSTK}
+\end{document}
