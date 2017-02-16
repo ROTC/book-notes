@@ -39,10 +39,12 @@
             {\color{blue} \bf{Difficulty in Capturing Additive Structure}}
         \subsection{Spam Example(Continued)}
             交叉验证误差率由一系列α值来标引，而不是树的大小，因为对于同一个α，不同折生成的树可能大小不一样。（图9.4的交叉验证结果只被α值索引，测试结果既可被α，又可被剪枝后的树的大小索引）
-            
+
             医学分类问题中，术语敏感性(sensitivity)(1预测为1)和特效性(specificity)(0预测为0)用来刻画规则。
-            
+
             更好的方法不是仅在节点中修改贝叶斯规则（更改损失权重），而是在树增长过程中考虑不相等损失。
-            
+
             ROC曲线下面的面积也被称为c-statistic，当考虑一个额外的预测子加在标准模型上的影响时，其可能不是一个合理的度量。新的预测子可能在模型散离度的改变上影响很大，而在c-statistic上只会小量的增大。另一方面，c-statistic在分析额外预测子对独立样本的分类的改变上有用。
 
+    \section{Missing Data}
+        

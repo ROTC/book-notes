@@ -1,0 +1,17 @@
+\chapter{Random Forests}
+    \section{Introduction}
+    \section{Definition of Random Forests}
+    \section{Details of Random Forest}
+        \subsection{Out of Bag Samples}
+        \subsection{Variable Importance}
+        \subsection{Proximity Plots}
+        \subsection{Random Forests and Overfitting}
+            当相关变量增加时，随机森林的性能对于噪声变量的增加更加健壮。这种健壮性很大原因是误分类损失对概率的估值的偏差和方差不敏感。
+            
+            随机森林不会过拟合数据。但是单独的树可能过度拟合，而导致不必要的方差。得出的经验是使用全树很少会有很大的损失，且减少了一个参数。
+    \section{Analysis of Random Forests}
+        \subsection{Variance and the De-Correlation Effect}
+            单个树的方差(可依据标准条件方差进行分解)随着m的变化不会发生大的变化。
+        \subsection{Bias}
+            随机森林的偏差会大于单个未剪枝的树，因为随机和减小的样本空间引入了限制。m值越小，相关性越小，方差越小，而偏差越大。
+        \subsection{Adaptive Nearest Neighbors}

@@ -1,0 +1,68 @@
+\chapter{Boosting and Additive Trees}
+    \section{Boosting Methods}
+        \subsection{Outline of This Chapter}
+    \section{Boosting Fits an Additive Model}
+    \section{Forward Stagewise Additive Modeling}
+    \section{Exponential Loss and AdaBoost}
+        训练集误分类率大约在250次迭代后平稳下来，但是指数损失保持递减，因为它对估计类概率的变化更为敏感。
+    \section{Why Exponential Loss?}
+        对于加法建模，指数损失的主要吸引力在于计算。它引出简单的模再加权AdaBoost算法。
+
+        定义$Y' = (Y + 1)/2 \in \{ 0,1\}$，将$\{-1, 1\}$转换成$\{0, 1\}$。
+
+    \section{Loss Functions and Roubustness}
+        尽管应用于总体联合分布时指数损失和二项式散离产生相同的解，但都是population（总体）意义上的，对于有穷数据集就不相同了。
+
+        {\color{blue} \bf{Robust Loss Functions for Classification}}
+
+        在训练过程中，指数损失标准主要影响具有大的负边缘值的观测。二项式散离对这样的观测的影响相对较小，并更均匀地对所有数据散步这种影响。因此，在噪声处理中，它的健壮性更强。
+
+        {\color{blue} \bf{Robust Loss Functions for Regression}}
+
+        在拟合过程中，有限样本上的平方误差损失更重视具有较大绝对残差的观测。这样，它极其缺乏健壮性，而且对于长尾误差分布，特别是对于严重的误差度量值（“异常值”），它的性能会大幅度下降。
+    \section{'Off-the-Shelf' Procedures for Data Mining}
+    \section{Example: Spam Data}
+    \section{Boosting Trees}
+        提到的式子(10.27)对(10.26)的近似，是指$\tilde L$对$L$的近似？
+    \section{Numerical Optimization via Gradient Boosting}
+        \subsection{Steepest Descent}
+            \begin{equation}
+              {g_{im}} = {\left[ {\frac{{\partial L({y_i},f({x_i})}}{{\partial f({x_i})}}} \right]_{f({x_i}) = {f_{m - 1}}({x_i})}}
+            \end{equation}
+
+            最速下降可以看作一个非常贪心的策略，因为在方向$- {{\bf{g}}_m}$，$L({\bf{f}})$在${\bf{f}} = {{\bf{f}}_{m - 1}}$上下降最快。
+        \subsection{Gradient Boosting}
+            逐步前向提升也是一种非常贪心的策略，树预测$T({x_i};{\Theta _m})$类似于负梯度的分量。两者之间的主要区别是树分量${{\bf{t}}_m} = (T({x_1};{\Theta _m}), \cdot  \cdot  \cdot ,T({x_N};{\Theta _m}))$不是独立的，它们被限制为一个$J_m$端点决策树的预测，而负梯度是无约束的最大下降方向。
+
+            使用梯度提升（利用负梯度拟合树），而不是残差进行拟合，主要原因是梯度提升可以针对特定的损失函数。
+        \subsection{Implementation of Gradient Boosting}
+            最原始的实现为MART(multiple additive regression trees)，即多重加法回归树。
+    \section{Right-Sized Trees for Boosting}
+        对于很多实际当中遇到的问题，低阶交互效应趋于占支配地位。
+
+        基于树逼近的交互效应受树大小的限制。
+    \section{Regularization}
+        \subsection{Shrinkage}
+        \subsection{Subsampling}
+    \section{Interpretation}
+        \subsection{Relative Importance of Predictor Variables}
+        \subsection{Partial Dependence Plots}
+            $f(X)$对$X_S$的偏依赖的定义是：
+            \begin{equation}
+              {f_S}({X_S}) = {{\mathop{\rm E}\nolimits} _{{X_C}}}f({X_S},{X_C})
+            \end{equation}
+            它并不是忽略$X_C$的作用，而是考虑$X_C$的平均作用后的结果。
+            
+            条件期望：
+            \begin{equation}
+              {\mathop{\rm E}\nolimits} (f({X_S},{X_C})|{X_S}) = \sum\limits_{{X_C}} {f({X_S}} ,{X_C})\Pr ({X_c}|{X_S})
+            \end{equation}
+            它是仅用$X_S$的函数对$f(X)$的最佳最小二乘方逼近。
+    \section{illustrations}
+        \subsection{California Housing}
+        \subsection{New Zealand Fish}
+            抓住的尺寸大小有过多的0，针对此有zero-inflated Poisson模型，一个更简单的方法是：
+            \begin{equation}
+              {\mathop{\rm E}\nolimits} (Y|X) = E(Y|Y > 0,X) \cdot \Pr (Y > 0|X)
+            \end{equation}
+            其中第二项可以基于逻辑斯缔回归估计，第一项基于具有正的尺寸的样本估计。
